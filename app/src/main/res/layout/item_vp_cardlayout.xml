@@ -6,15 +6,17 @@
         android:id="@+id/item_vp_cardlayout_contain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:transitionName="@string/transition_vpchild"
         android:clickable="true"
-        android:orientation="horizontal" android:clipChildren="false">
+        android:orientation="horizontal"
+        android:clipChildren="false">
 
     <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="450dp" android:id="@+id/item_vp_cardlayout_detailview"
             android:background="#ffffff"
-            android:scaleX="0.5" android:scaleY="0.5" android:layout_marginTop="100dp">
+            android:scaleX="0.5" android:scaleY="0.5" android:layout_marginTop="0dp">
 
 
         <FrameLayout
@@ -34,8 +36,9 @@
             android:layout_height="450dp"
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
-            android:id="@+id/item_vp_main_cardview_rl_main" android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
+            android:background="@drawable/shadow_test00"
+            android:id="@+id/item_vp_main_cardview_rl_main" android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
 
 
         <FrameLayout
@@ -46,7 +49,8 @@
                     android:id="@+id/item_vp_cardlayout_thumb_main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop" android:background="@drawable/ic_launcher_background"/>
+                    android:transitionName="@string/transition_vpchild"
+                    android:scaleType="centerCrop"/>
             <TextView
                     android:id="@+id/item_vp_cardlayout_title_top"
                     android:layout_width="wrap_content"

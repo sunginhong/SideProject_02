@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SideProject_02</string>
+    <string name="transition_vpchild">transition_vpchild</string>
 </resources>
