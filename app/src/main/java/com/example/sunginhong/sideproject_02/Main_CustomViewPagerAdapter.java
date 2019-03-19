@@ -34,6 +34,9 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
     static RelativeLayout rl_mainArray[] = new RelativeLayout[MainActivity.ITEM_COUNT];
     static RelativeLayout rl_subArray[] = new RelativeLayout[MainActivity.ITEM_COUNT];
     static ImageView rl_main_ImgArray[] = new ImageView[MainActivity.ITEM_COUNT];
+    static TextView rl_main_TITLEArray[] = new TextView[MainActivity.ITEM_COUNT];
+
+    static String rl_main_iv_TITLEArray[] = new String[MainActivity.ITEM_COUNT];
     static Uri rl_main_iv_URLArray[] = new Uri[MainActivity.ITEM_COUNT];
 
     ArrayList<String[]> arrayList;
@@ -55,6 +58,7 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
     static RelativeLayout getContainView;
     static RelativeLayout getMainView ;
     static RelativeLayout getChildView;
+    static TextView getTitleView;
 
     public Main_CustomViewPagerAdapter(Context context, ArrayList<String[]> list) {
         arrayList = list;
@@ -102,6 +106,7 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
         TextView rl2_tv_left = (TextView)itemView.findViewById(R.id.item_vp_cardlayout_title_left);
         TextView rl2_tv_right = (TextView)itemView.findViewById(R.id.item_vp_cardlayout_title_right);
 
+        rl_main_TITLEArray[position] = rl2_tv_main;
         rl_contain.setId(position);
         rl_containArray[position] = rl_contain;
 
@@ -126,6 +131,7 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
 
         rl_main_ImgArray[position] = rl_main_iv;
         rl_main_iv_URLArray[position] = libThumb;
+        rl_main_iv_TITLEArray[position] = detail[2];
 
         rl2_tv_main.setText(detail[2]);
         rl2_tv_left.setText(detail[3]);
@@ -154,7 +160,10 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
     };
 
     public void onClick(View view) {
-//        Log.d("ssss", "클릭"+view.getId());
+        getChildView = rl_subArray[view.getId()];
+        if (getChildView.getScaleX() == 0.5){
+            child_StateAnim(true, getChildView);
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -198,6 +207,7 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
 
             case MotionEvent.ACTION_UP:
                 if (dragState) {
+                    dragState = false;
                     if (-getContainView.getY() >= getContainView.getHeight()/DRAGMOVE_RATE){
                         if (getChildView.getScaleX() == 1.0f){
 //                            Log.d("sssss", "1-2");
@@ -285,13 +295,15 @@ public class Main_CustomViewPagerAdapter extends PagerAdapter implements View.On
     static  void child_DetailAnim(final  View view){
         final View getView = view;
         View getImgView = view;
+        View getTitleView = view;
 
         lastSelItem = view.getId();
         getImgView = rl_main_ImgArray[getView.getId()];
-
+        getTitleView = rl_main_TITLEArray[getView.getId()];
 
         Intent intent = new Intent(context, Main_DetailActivity.class);
-        intent.putExtra("thumbImg_Link", (rl_main_iv_URLArray[getView.getId()]).toString());
+        intent.putExtra("topTitle", (rl_main_iv_TITLEArray[getView.getId()]));
+        intent.putExtra("topThumb", (rl_main_iv_URLArray[getView.getId()]).toString());
         Pair<View, String> p1 = Pair.create(getView, context.getString(R.string.transition_vpchild));
         Pair<View, String> p2 = Pair.create(getImgView, context.getString(R.string.transition_vpchild));
 

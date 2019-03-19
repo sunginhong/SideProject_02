@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         if(values.size() == 0) {
             values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/1150809/screenshots/6104124/aplikasi_pelajaran_2x.png", "TITLE0", "STATE-A", "STATE-B"});
             values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/1967263/screenshots/6191646/dribbble-01_2x.png", "TITLE1", "STATE-A", "STATE-B"});
-            values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/757683/screenshots/5399131/cc_shot_1_2x.jpg", "TITLE2", "STATE-A", "STATE-B"});
+            values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/448687/screenshots/6196443/onedayatatime.jpg", "TITLE2", "STATE-A", "STATE-B"});
             values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/1568655/screenshots/6191621/omelette_mobile_2x.png", "TITLE3", "STATE-A", "STATE-B"});
-            values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/4859/screenshots/4867190/dashboard2.png", "TITLE4", "STATE-A", "STATE-B"});
+            values.add(new String[]{"DetailView", "https://cdn.dribbble.com/users/757683/screenshots/5399131/cc_shot_1_2x.jpg", "TITLE4", "STATE-A", "STATE-B"});
         }
 
         Main_CustomViewPagerAdapter mAdapter = new Main_CustomViewPagerAdapter(this, values);
