@@ -82,7 +82,6 @@ public class Main_DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        finish();
         supportFinishAfterTransition();
     }
 
