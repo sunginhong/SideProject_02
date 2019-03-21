@@ -90,39 +90,27 @@ public class Detail_NestedScrollingView extends NestedScrollView {
         scrollDirectionCheck(scrollY, oldScrollY);
 
         if (scrollY > Utils_Calc.dpToPx(200)){
-            if (scrollDirection == "DOWN" && scrolledDistance < HIDE_THRESHOLD && appbarVisible) {
-                mHandler.removeCallbacks(mRunnable);
-                Main_DetailActivity.detail_header.setY(Utils_Calc.dpToPx(0));
+            if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
                 ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(-56), Utils_Calc.dpToPx(0), 400);
-                appbarVisible = false;
-                scrolledDistance = 0;
-            } else if (scrollDirection == "UP" && scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-                mHandler = new Handler();
-                mHandler.postDelayed(mRunnable, 400);
-
-                ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(0), Utils_Calc.dpToPx(-56), 400);
+                Main_DetailActivity.detail_header.setY(Utils_Calc.dpToPx(0));
                 appbarVisible = true;
                 scrolledDistance = 0;
-            }
-            if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible){
-                mHandler.removeCallbacks(mRunnable);
-                Main_DetailActivity.detail_header.setY(Utils_Calc.dpToPx(0));
-                ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(-56), Utils_Calc.dpToPx(0), 400);
+            } else if (scrollDirection == "DOWN" && scrolledDistance > HIDE_THRESHOLD && appbarVisible) {
+                ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(0), Utils_Calc.dpToPx(-56), 400);
+                mHandler = new Handler();
+                mHandler.postDelayed(mRunnable, 400);
                 appbarVisible = false;
                 scrolledDistance = 0;
             }
         } else {
-            if (scrolledDistance > HIDE_THRESHOLD && !appbarVisible) {
-
+            if (scrolledDistance < Utils_Calc.dpToPx(200) && appbarVisible) {
+                ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(0), Utils_Calc.dpToPx(-56), 400);
                 mHandler = new Handler();
                 mHandler.postDelayed(mRunnable, 400);
-
-                ScrollHederAnim.HeaderHide(Main_DetailActivity.detail_header, Utils_Calc.dpToPx(0), Utils_Calc.dpToPx(-56), 400);
-                appbarVisible = true;
+                appbarVisible = false;
                 scrolledDistance = 0;
             }
         }
-
     }
 
     private void scrollDirectionCheck(int scrollY, int oldScrollY){
